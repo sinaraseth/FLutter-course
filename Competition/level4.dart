@@ -9,7 +9,7 @@ class Distance {
   double get meter => _meter;
   double get kms => _meter / 1000;
 
-  Distance operator +(Distance newDistance ){
+  Distance operator +(Distance newDistance) {
     return Distance.meter(_meter + newDistance._meter);
   }
 
@@ -23,9 +23,8 @@ void main(List<String> args) {
   // Distance d1 = Distance.cms(1000.0);
   Distance d1 = Distance.cms(1000);
   Distance d2 = Distance.meter(1000);
-  Distance d4 = Distance.meter(2);
-  Distance d3 = d1 + d2 + d4;
+  // Distance d4 = Distance.meter(2);
+  Distance d3 = d1 + d2; //+ d4;
 
-  print('Distance d1 in kms: ${d3.kms}');
-
+  print('Distance d3 in kms: ${d3.kms}');
 }
