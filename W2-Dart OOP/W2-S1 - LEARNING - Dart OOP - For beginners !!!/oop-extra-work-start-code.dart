@@ -1,49 +1,121 @@
-// OOP extra work start code
-// Class wondow
+enum Color { red, green }
+enum Position { center, left, right }
+enum RoomType { LivingRoom, BedRoom, Kitchen, GamingRoom, EmergencyRoom }
+
+// Class Window
 class Window {
-  String color;
-  int numberOfWindow;
+  Color colorWindow;
   String locat; // Ex: left, right
 
-  Window(this.color, this.numberOfWindow, this.locat);
+  Window(this.colorWindow, this.locat);
+
+  @override
+  String toString() {
+    return 'Window(color: $colorWindow, location: $locat)';
+  }
 }
 
-// class door
+// Class Door
 class Door {
-  String locat; // Ex: center, left, right
-  int numberOfDoor;
+  Position location; // Ex: center, left, right
 
-  Door(this.locat, this.numberOfDoor);
+  Door({this.location = Position.center});
+
+  @override
+  String toString() {
+    return 'Door(location: $location)';
+  }
 }
 
-// Class roof
+// Class Roof
 class Roof {
   String type;
-  int numberOfRoof;
 
-  Roof(this.numberOfRoof, this.type);
+  Roof(this.type);
+
+  @override
+  String toString() {
+    return 'Roof(type: $type)';
+  }
 }
 
 // Class Chimney
 class Chimney {
-  int numberOfChimney;
+  Position posiChim;
+  Color coloChim;
 
-  Chimney(this.numberOfChimney);
+  Chimney(this.coloChim, this.posiChim);
+
+  @override
+  String toString() {
+    return 'Chimney(color: $coloChim, position: $posiChim)';
+  }
 }
 
-// my own house
-class House {
-  Window redLeft = Window('red', 1, 'left');
-  Window redRight = Window('red', 1, 'right');
-  Window greenLeft_ = Window('green', 1, 'left');
-  Window greenRight_ = Window('green', 1, 'right');
+// Class Stair
+class Stair {
+  RoomType roomType;
 
-  Map<String, List<Window>> windowWithStair = {
-    'stair1': [redLeft, greenRight_],
-    'stair0': [redLeft, redRight],
+  Stair(this.roomType);
+
+  @override
+  String toString() {
+    return 'Stair(roomType: $roomType)';
+  }
+}
+
+class Room {}
+
+class House {
+  final Door door;
+  final Roof roof;
+  final Chimney chimney;
+
+  // Windows at various stairs
+  Map<String, List<Window>> stairAndWindow;
+
+  House({
+    required this.door,
+    required this.roof,
+    required this.stairAndWindow,
+    required this.chimney,
+  });
+
+  @override
+  String toString() {
+    String windowsDescription = stairAndWindow.entries.map((entry) {
+      return '${entry.key}: ${entry.value.join(', ')}';
+    }).join('; ');
+
+    return '''
+House details:
+  - ${door.toString()}
+  - ${roof.toString()}
+  - ${chimney.toString()}
+  - Windows: $windowsDescription
+    ''';
+  }
+}
+
+void main() {
+  Door d1 = Door(location: Position.center);
+  Roof r1 = Roof('Traingle');
+  Chimney c1 = Chimney(Color.red, Position.left);
+
+  // Defining the windows for each stair
+  Map<String, List<Window>> stairAndWindow = {
+    'Stair0': [Window(Color.red, 'left'), Window(Color.green, 'right')],
+    'Stair1': [Window(Color.green, 'left'), Window(Color.red, 'right')]
   };
 
-  Door doorStair0 = Door('center', 1);
-  Roof houseRoof = Roof(1, 'Triagle');
-  Chimney houseChimney = Chimney(1);
+  // Creating the House object
+  House myHouse = House(
+    door: d1,
+    roof: r1,
+    stairAndWindow: stairAndWindow,
+    chimney: c1,
+  );
+
+  // Printing out the details of the house
+  print(myHouse);
 }
