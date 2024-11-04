@@ -33,29 +33,32 @@ class CustomButton extends StatelessWidget {
         textColor = Colors.white;
         break;
       case ButtonType.disabled:
-        backgroundColor = Colors.grey;
-        textColor = Colors.black;
+        backgroundColor = Colors.grey.shade300;
+        textColor = Colors.black38;
         break;
     }
 
     return Container(
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(40), // Fully rounded corners
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      padding: const EdgeInsets.symmetric(
+          horizontal: 100, vertical: 10), // Adjust padding for pill shape
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          if (iconPosition == IconPosition.left) Icon(icon, color: textColor),
+          if (iconPosition == IconPosition.left)
+            Icon(icon, color: textColor, size: 20),
           const SizedBox(width: 8),
           Text(
             label,
-            style: TextStyle(color: textColor),
+            style: TextStyle(color: textColor, fontSize: 16),
           ),
           const SizedBox(width: 8),
-          if (iconPosition == IconPosition.right) Icon(icon, color: textColor),
+          if (iconPosition == IconPosition.right)
+            Icon(icon, color: textColor, size: 20),
         ],
       ),
     );
@@ -74,22 +77,22 @@ void main() {
           children: [
             CustomButton(
               label: 'Submit',
-              icon: Icons.thumb_up,
+              icon: Icons.check,
               iconPosition: IconPosition.left,
               buttonType: ButtonType.primary,
             ),
             SizedBox(height: 16),
             CustomButton(
-              label: 'Time',
-              icon: Icons.timer,
-              iconPosition: IconPosition.right,
+              icon: Icons.access_time,
+              iconPosition: IconPosition.left,
               buttonType: ButtonType.secondary,
+              label: 'Time',
             ),
             SizedBox(height: 16),
             CustomButton(
               label: 'Account',
-              icon: Icons.account_tree_outlined,
-              iconPosition: IconPosition.right,
+              icon: Icons.account_tree,
+              iconPosition: IconPosition.left,
               buttonType: ButtonType.disabled,
             ),
           ],
