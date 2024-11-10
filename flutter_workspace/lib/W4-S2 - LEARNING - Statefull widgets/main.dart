@@ -2,24 +2,21 @@ import 'package:flutter/material.dart';
 
 // ___________________________________________________________________
 // CASE 1
-// The screen is the parent of the Container, 
+// The screen is the parent of the Container,
 // it forces the Container to be exactly the same size as the screen.
 // ___________________________________________________________________
-void main() {
-  runApp(
-    MaterialApp(
-      home: Container(color: Colors.red)
-    ),
-  );
-}
-
-
-
+// void main() {
+//   runApp(
+//     MaterialApp(
+//       home: Container(color: Colors.red)
+//     ),
+//   );
+// }
 
 // ___________________________________________________________________
 // CASE 2
 // The red Container wants to be 100 × 100
-// But it can’t  
+// But it can’t
 // Because the screen forces it to be exactly the same size as the screen.
 // ___________________________________________________________________
 
@@ -30,10 +27,6 @@ void main() {
 //     ),
 //   );
 // }
-
-
-
-
 
 // ___________________________________________________________________
 // CASE 3
@@ -52,10 +45,6 @@ void main() {
 //   );
 // }
 
-
-
-
-
 // ___________________________________________________________________
 // CASE 4
 // Align tells the Container that it can be any size it wants
@@ -73,17 +62,10 @@ void main() {
 //   );
 // }
 
-
-
-
-
-
-
-
 // ___________________________________________________________________
 // CASE 5
 // The Center tells the Container that it can be any size it wants, but not bigger than the screen.
-// The Container wants to be of infinite size, 
+// The Container wants to be of infinite size,
 // But since it can't be bigger than the screen, it just fills the screen.
 // ___________________________________________________________________
 
@@ -96,12 +78,6 @@ void main() {
 //     )),
 //   );
 // }
-
-
-
-
-
-
 
 // ___________________________________________________________________
 // CASE 6
@@ -117,12 +93,6 @@ void main() {
 //     )),
 //   );
 // }
-
-
-
-
-
-
 
 // ___________________________________________________________________
 // CASE 7
@@ -141,11 +111,6 @@ void main() {
 //     )),
 //   );
 // }
-
-
-
-
-
 
 // ___________________________________________________________________
 // CASE 8
@@ -166,19 +131,11 @@ void main() {
 //   );
 // }
 
-
-
-
-
-
-
-
-
-
 // ___________________________________________________________________
 // CASE 9
-// The Column arranges its 2 children vertically. 
+// The Column arranges its 2 children vertically.
 // The container will stretch to fill the available width.
+// As the column need to alignment to arrage it to center or up or down
 // ___________________________________________________________________
 
 // void main() {
@@ -196,19 +153,11 @@ void main() {
 //   );
 // }
 
-
-
-
-
-
-
-
-
-
 // ___________________________________________________________________
 // CASE 10
 // The Expanded widget expands a child of a Row, Column,
 // The green container fill the available space
+// Expanded is replace space by full of not use space
 // ___________________________________________________________________
 
 // void main() {
@@ -226,13 +175,11 @@ void main() {
 //   );
 // }
 
-
-
-
 // ___________________________________________________________________
 // CASE 11
 // The green container has expanded with a flex 1
 // The yellow container has expanded with a flex 2
+// flex is multiple for if color two hight 100px and flex 1 it mean that it multiple by 1, flex 2 multiple by 2
 // ___________________________________________________________________
 
 // void main() {
@@ -265,13 +212,6 @@ void main() {
 //     ),
 //   );
 // }
-
-
-
-
-
-
-
 
 // ___________________________________________________________________
 // CASE 12
@@ -315,45 +255,64 @@ void main() {
 //   );
 // }
 
-
-
-
-
-
-
-
 // ___________________________________________________________________
-//CASE 13
+//CASE Test
 // ___________________________________________________________________
 
-// void main() {
-//   runApp(
-//     MaterialApp(
-//       home: Center(
-//           child: Column(children: [
-//         Expanded(
-//           child: Container(
-//             color: Colors.blue,
-//           ),
-//         ),
-//         Expanded(
-//           child: Container(
-//             padding: const EdgeInsets.only(left: 50, right: 50),
-//             color: Colors.yellow,
-//             child: Row(
-//               children: [
-//                 Container(width: 100, color: Colors.pink),
-//                 Expanded(child: Container(color: Colors.green)),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ])),
-//     ),
-//   );
-// }
-
-
+void main() {
+  runApp(
+    MaterialApp(
+      home: Center(
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.only(top: 100),
+                color: Colors.blue,
+                height: 200,
+              ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child:
+                      Container(width: 100, height: 100, color: Colors.green),
+                ),
+                Container(width: 100, height: 100, color: Colors.pink),
+              ],
+            ),
+            Row(children: [
+              Expanded(
+                  child:
+                      Container(width: 100, height: 100, color: Colors.yellow)),
+              const SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                  child:
+                      Container(width: 100, height: 100, color: Colors.yellow)),
+              const SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                  child:
+                      Container(width: 100, height: 100, color: Colors.yellow)),
+            ]),
+            const SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.only(top: 100),
+                color: Colors.pink,
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
 
 // ___________________________________________________________________
 // CASE 14
@@ -384,11 +343,6 @@ void main() {
 //   );
 // }
 
-
-
-
-
-
 // ___________________________________________________________________
 // CASE 15
 // ___________________________________________________________________
@@ -407,7 +361,7 @@ void main() {
 //                   style: TextStyle(backgroundColor: Colors.red, fontSize: 50),
 //                 )),
 //             Container(
-//                 color: Colors.yellow,
+//                 color: const Color.fromARGB(255, 82, 76, 26),
 //                 child: const Text(
 //                   "2",
 //                   style: TextStyle(backgroundColor: Colors.green, fontSize: 50),
