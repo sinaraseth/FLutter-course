@@ -7,11 +7,12 @@ List<String> images = [
   "assets/w4-s2/girl.jpg",
   "assets/w4-s2/man.jpg",
 ];
-List<String> description = ['Juncoc', 'Spoonbill 2', 'Insect', 'Girl', 'Man'];
+List<String> description = ['Juncoc', 'Spoonbill', 'Insect', 'Girl', 'Man'];
 int i = 0;
 
 void main() => runApp(const MaterialApp(
-      debugShowCheckedModeBanner: false, // Disables the debug banner during development
+      debugShowCheckedModeBanner:
+          false, // Disables the debug banner during development
       home: ImageViewer(),
     ));
 
@@ -73,14 +74,15 @@ class _ImageViewerState extends State<ImageViewer> {
             children: [
               Image.asset(
                 images[i],
-                width: 300, 
-                height: 300, 
-                fit: BoxFit.cover, 
+                width: 300,
+                height: 300,
+                fit: BoxFit.cover,
               ),
               const SizedBox(height: 20),
               Text(
                 description[i],
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ],
           ),

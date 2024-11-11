@@ -60,8 +60,10 @@ class _FavoriteCardState extends State<FavoriteCard> {
     setState(() {
       if (isFavorite = !isFavorite) {
         iconColor = Colors.red;
+        
       } else {
         iconColor = Colors.black;
+       
       }
     });
   }
@@ -108,6 +110,5 @@ class _FavoriteCardState extends State<FavoriteCard> {
         ],
       ),
     );
-    // return con;
   }
 }
