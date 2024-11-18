@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'data/profile_data.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -19,51 +20,50 @@ class ProfileApp extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: mainColor,
         title: const Text(
-          'CADT student Profile',
+          'CADT STUDENT PROFILE',
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: 40),
-            CircleAvatar(
-              radius: 60,
-              backgroundImage: AssetImage(
-                  'assets/w5-s2/aang.png'), 
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(height: 40),
+          CircleAvatar(
+            radius: 70,
+            backgroundImage: AssetImage(
+              sethPrfile.avatarUrl,
             ),
-            SizedBox(height: 20),
-            Text(
-              'Ronan OGOR',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: mainColor,
-              ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            sethPrfile.name,
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: mainColor,
             ),
-            Text(
-              'Flutter Developer',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
-              ),
+          ),
+          Text(
+            sethPrfile.position,
+            style: const TextStyle(
+              fontSize: 16,
+              color: Colors.grey,
             ),
-            SizedBox(height: 20),
-            ProfileTile(
-              icon: Icons.phone,
-              title: "Phone Number",
-              data: "+123 456 7890",
-            ),
-             ProfileTile(
-              icon: Icons.location_on,
-              title: "Address",
-              data: "Cambodia",
-            ),
-          ],
-        ),
-      ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+                child: Column(
+              children: [
+                const SizedBox(height: 20),
+                ...sethPrfile.tiles.map((item) => ProfileTile(
+                    icon: item.icon, title: item.title, data: item.value)),
+              ],
+            )),
+          )
+        ],
+      )),
     );
   }
 }

@@ -42,3 +42,9 @@ class Label extends StatelessWidget {
     );
   }
 }
+
+
+  // Q1- In what scenarios might one approach be more advantageous than another?
+  // ->  Using a Dedicated Function is have more advantageous than another 
+  //     because using Map also function it make the code more clean and with good 
+  //     performance
