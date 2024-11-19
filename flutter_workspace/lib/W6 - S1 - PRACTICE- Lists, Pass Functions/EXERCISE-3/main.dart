@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:test1/W5-S2-List-Inputs/1%20-%20START%20CODE/EXERCISE-3/screen/welcome.dart';
+import 'screen/welcome.dart';
+import 'package:flutter_workspace/W6 - S1 - PRACTICE- Lists, Pass Functions/EXERCISE-3/screen/temperature.dart';
 
 class TemperatureApp extends StatefulWidget {
   const TemperatureApp({super.key});
@@ -11,6 +12,12 @@ class TemperatureApp extends StatefulWidget {
 }
 
 class _TemperatureAppState extends State<TemperatureApp> {
+  bool switchScreen = false;
+  void changeScreen(){
+    setState(() {
+      switchScreen = !switchScreen;
+    });
+  }
   
   @override
   Widget build(context) {
@@ -28,7 +35,13 @@ class _TemperatureAppState extends State<TemperatureApp> {
               end: Alignment.bottomRight,
             ),
           ),
-          // child: const Welcome(),
+          child: Builder(builder: (BuildContext context){
+            if(switchScreen){
+              return Temperature(goBack: changeScreen);
+            } else{
+              return Welcome(pressChange: changeScreen);
+            }
+          })
         ),
       ),
     );

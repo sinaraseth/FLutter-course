@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Temperature extends StatelessWidget {
-  Temperature({super.key});
+  final VoidCallback goBack;
+  Temperature({super.key, required this.goBack});
 
   final BoxDecoration textDecoration = BoxDecoration(
     color: Colors.white,
@@ -25,6 +26,7 @@ class Temperature extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          BackButton(onPressed: goBack,),
           const Icon(
             Icons.thermostat_outlined,
             size: 120,
