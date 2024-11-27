@@ -12,8 +12,10 @@ void main() {
           children: [
             const Label("Method 1: Loop in Array", bold: true),
             for (var i = 0; i < colors.length; i++) Text(colors[i]),
+
             const Label("Method 2: Map", bold: true),
             ...colors.map((item) => Text(item)),
+            
             const Label("Method 23: Dedicated Function", bold: true),
             ...getColors(),
           ],
