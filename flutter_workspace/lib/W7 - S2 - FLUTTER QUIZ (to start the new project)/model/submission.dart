@@ -58,18 +58,10 @@ void main() {
       title: "Who is Chanda?",
       possibleAnswers: [
         "Chanda is King Flutter",
-        "Chanda is Ronan's father",
+        "Chanda is Ronan",
         "Chanda is JAVA"
       ],
       goodAnswer: "Chanda is King Flutter");
-  // Question qu2 = const Question(
-  //     title: "Who is seth?",
-  //     possibleAnswers: [
-  //       "Chanda is King code",
-  //       "Chanda is Ronan's father",
-  //       "Chanda is JAVA"
-  //     ],
-  //     goodAnswer: "Chanda is King code");
 
   Answer An1 = Answer(questionAnswer: "Chanda is King Flutter", question: qu1);
   Submission submission = Submission(answer: [An1]);
