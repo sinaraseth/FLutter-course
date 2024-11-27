@@ -1,41 +1,64 @@
 import 'package:flutter/material.dart';
 import 'model/quiz.dart';
+import 'model/submission.dart';
+import 'screens/welcome_screen.dart';
+import 'screens/question_screen.dart';
+import 'screens/result_screen.dart';
+
+enum QuizState { notStarted, started, finished }
 
 Color appColor = Colors.blue[500] as Color;
 
 class QuizApp extends StatefulWidget {
-  const QuizApp(this.quiz, {super.key});
-
   final Quiz quiz;
 
+  const QuizApp({Key? key, required this.quiz}) : super(key: key);
+
   @override
-  State<QuizApp> createState() => _QuizAppState();
+  _QuizAppState createState() => _QuizAppState();
 }
 
 class _QuizAppState extends State<QuizApp> {
+  QuizState quizState = QuizState.notStarted;
+  Submission submission = Submission(answer: []); // Initialize Submission object
+
+  void changeState(QuizState newState) {
+    setState(() {
+      quizState = newState;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: appColor,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 100),
-              Image.asset(
-                'assets/quiz-logo.png',
-                height: 300,
-                width: 300,
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+    switch (quizState) {
+      case QuizState.notStarted:
+        return WelcomeScreen(
+          quizTitle: widget.quiz.title, // Passing the quiz title
+          onStart: () => changeState(QuizState.started),
+        );
+      case QuizState.started:
+        return QuestionScreen(
+          quiz: widget.quiz,
+          onfinishQuiz: () {
+            changeState(QuizState.finished); // Transition to finished
+          },
+        );
+      case QuizState.finished:
+        return ResultScreen(
+          onRestart: () {
+            setState(() {
+              quizState = QuizState.notStarted; // Restart quiz
+              submission.removeAnswer(); // Clear answers
+            });
+          },
+          submission: submission, // Pass the submission object
+          quiz: widget.quiz,
+        );
+      default:
+        return WelcomeScreen(
+          quizTitle: widget.quiz.title,
+          onStart: () => changeState(QuizState.started),
+        );
+    }
   }
 }

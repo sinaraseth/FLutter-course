@@ -1,11 +1,10 @@
- 
-import 'package:flutter/material.dart';
-
-class Quiz {
+ class Quiz {
   final String title;
   final List<Question> questions;
 
   Quiz({required this.title, required this.questions});
+
+  get submission => null;
 }
 
 class Question {

@@ -53,26 +53,27 @@ class Submission {
   }
 }
 
-void main() {
-  Question qu1 = const Question(
-      title: "Who is Chanda?",
-      possibleAnswers: [
-        "Chanda is King Flutter",
-        "Chanda is Ronan",
-        "Chanda is JAVA"
-      ],
-      goodAnswer: "Chanda is King Flutter");
+// void main() {
+//   Question qu1 = const Question(
+//       title: "Who is Chanda?",
+//       possibleAnswers: [
+//         "Chanda is King Flutter",
+//         "Chanda is Ronan",
+//         "Chanda is JAVA"
+//       ],
+//       goodAnswer: "Chanda is King Flutter");
 
-  Answer An1 = Answer(questionAnswer: "Chanda is King Flutter", question: qu1);
-  Submission submission = Submission(answer: [An1]);
+//   Answer An1 = Answer(questionAnswer: "Chanda is King Flutter", question: qu1);
+//   Submission submission = Submission(answer: [An1]);
 
-  print(An1.iscorrect());
-  print("Changed");
-  submission.addAnswer(qu1, "XD");
-  print(An1.iscorrect());
-  print(submission.getScore());
-  print(submission.getAnswerFor(qu1)?.questionAnswer);
-  print("After remove");
-  submission.removeAnswer();
-  print(submission.getAnswerFor(qu1)?.questionAnswer);
-}
+// //testing
+//   print(An1.iscorrect());
+//   print("Changed");
+//   submission.addAnswer(qu1, "XD");
+//   print(An1.iscorrect());
+//   print(submission.getScore());
+//   print(submission.getAnswerFor(qu1)?.questionAnswer);
+//   print("After remove");
+//   submission.removeAnswer();
+//   print(submission.getAnswerFor(qu1)?.questionAnswer);
+// }
