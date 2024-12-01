@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_workspace/W7 - S2 - FLUTTER QUIZ (to start the new project)/model/quiz.dart';
 import 'package:flutter_workspace/W7 - S2 - FLUTTER QUIZ (to start the new project)/model/submission.dart';
+import 'package:flutter_workspace/W7 - S2 - FLUTTER QUIZ (to start the new project)/quiz_app.dart';
 
 class ResultScreen extends StatelessWidget {
   final Quiz quiz;
@@ -21,10 +22,6 @@ class ResultScreen extends StatelessWidget {
     int totalQuestions = quiz.questions.length;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quiz Result'),
-        backgroundColor: Colors.blueAccent,
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -79,7 +76,8 @@ class ResultScreen extends StatelessWidget {
                 onPressed: onRestart,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueAccent,
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 ),
                 child: const Text(
                   'Restart Quiz',
