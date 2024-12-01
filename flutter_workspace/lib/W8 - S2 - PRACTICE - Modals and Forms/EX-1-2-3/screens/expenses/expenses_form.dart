@@ -63,7 +63,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(200),
-        lastDate: DateTime(2025));
+        lastDate: DateTime(2026));
 
     if (pickedDate != null) {
       setState(() {
@@ -98,43 +98,39 @@ class _ExpenseFormState extends State<ExpenseForm> {
               label: Text('Amount'),
             ),
           ),
-          Column(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              DropdownButton<Category>(
+                  value: _selectCategory,
+                  items: Category.values.map((category) {
+                    return DropdownMenuItem<Category>(
+                        value: category,
+                        child: Row(
+                          children: [
+                            Icon(category.icon),
+                            const SizedBox(width: 10),
+                            Text(category.name.toUpperCase()),
+                          ],
+                        ));
+                  }).toList(),
+                  onChanged: (Category? value) {
+                    setState(() {
+                      _selectCategory = value;
+                    });
+                  }),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  DropdownButton<Category>(
-                      value: _selectCategory,
-                      items: Category.values.map((category) {
-                        return DropdownMenuItem<Category>(
-                            value: category,
-                            child: Row(
-                              children: [
-                                Icon(category.icon),
-                                const SizedBox(width: 10),
-                                Text(category.name.toUpperCase()),
-                              ],
-                            ));
-                      }).toList(),
-                      onChanged: (Category? value) {
-                        setState(() {
-                          _selectCategory = value;
-                        });
-                      }),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.calendar_today),
-                        onPressed: _selectedDate,
-                      ),
-                    ],
+                  IconButton(
+                    icon: const Icon(Icons.calendar_today),
+                    onPressed: _selectedDate,
                   ),
                   Text(_selectDate == null
-                      ? 'Select Date'
-                      : '${_selectDate!.day}/${_selectDate!.month}/${_selectDate!.year}/')
+                  ? 'Select Date'
+                  : '${_selectDate!.day}/${_selectDate!.month}/${_selectDate!.year}/')
                 ],
               ),
+              
             ],
           ),
           // DropdownButton(
