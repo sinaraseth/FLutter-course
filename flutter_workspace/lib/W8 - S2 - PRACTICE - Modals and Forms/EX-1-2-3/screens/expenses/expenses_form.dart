@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../models/expense.dart';
+import 'package:flutter_workspace/W8 - S2 - PRACTICE - Modals and Forms/EX-1-2-3/screens/expenses/expenses_list.dart';
 
 class ExpenseForm extends StatefulWidget {
   const ExpenseForm({super.key, required this.onCreated});
@@ -18,7 +19,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
   Category? _selectCategory;
   DateTime? _selectDate;
 
-  String get title => _titleController.text;
+  String? get title => _titleController.text;
 
   @override
   void dispose() {
@@ -35,13 +36,84 @@ class _ExpenseFormState extends State<ExpenseForm> {
   void onAdd() {
     // 1- Get the values from inputs
     String title = _titleController.text;
-    double amount = double.parse(_valueController.text);
+    double? amount = double.tryParse(_valueController.text.trim());
 
-    if (_selectCategory == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please select a category!")),
-      );
+//warning for title not input
+    if (title.isEmpty) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("Please fill title!"),
+              actions: [
+                TextButton(onPressed: onCancel, child: const Text('Yes'))
+              ],
+            );
+          });
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(content: Text("Please fill title!")),
+      // );
+      // return;
+    }
+
+// warning for amount not input or amount smaller than 0
+    if (amount == null || amount < 0) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("Please fill amount"),
+              actions: [
+                TextButton(onPressed: onCancel, child: const Text('Okay'))
+              ],
+            );
+          });
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(content: Text("Please input amount")),
+      // );
       return;
+    }
+
+//warning for category not fill
+    if (_selectCategory == null) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("Please Choose category!"),
+              actions: [
+                TextButton(onPressed: onCancel, child: const Text('Yes'))
+              ],
+            );
+          });
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(content: Text("Please select a category!")),
+      // );
+      return;
+    }
+
+//warning for date not input or picker
+    if (_selectDate == null) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("Please choose date!"),
+              actions: [
+                TextButton(onPressed: onCancel, child: const Text('Yes'))
+              ],
+            );
+          });
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(content: Text("Please pick date!")),
+      // );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Add succecfull"),
+          duration: Duration(seconds: 5),
+        ),
+      );
     }
 
     // 2- Create the expense
@@ -56,6 +128,18 @@ class _ExpenseFormState extends State<ExpenseForm> {
 
     // 4- Close modal
     Navigator.pop(context);
+    // showDialog(
+    //     context: context,
+    //     builder: (BuildContext context) {
+    //       return AlertDialog(
+    //         title: const Text("Succesfully!"),
+    //         actions: [
+    //           TextButton(
+    //               onPressed: onAdd,
+    //               child: const Text("Okay"))
+    //         ],
+    //       );
+    //     });
   }
 
   Future<void> _selectedDate() async {
@@ -126,11 +210,10 @@ class _ExpenseFormState extends State<ExpenseForm> {
                     onPressed: _selectedDate,
                   ),
                   Text(_selectDate == null
-                  ? 'Select Date'
-                  : '${_selectDate!.day}/${_selectDate!.month}/${_selectDate!.year}/')
+                      ? 'Select Date'
+                      : '${_selectDate!.day}/${_selectDate!.month}/${_selectDate!.year}/')
                 ],
               ),
-              
             ],
           ),
           // DropdownButton(
