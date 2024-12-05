@@ -43,10 +43,11 @@ class _DeviceConverterState extends State<DeviceConverter> {
   void initState() {
     super.initState();
 
-//add listener to recalculate conversion when input changes
-    dollarController.addListener(() {
-      convertCurrency();
-    });
+//just for update realtime by just change input 
+// //add listener to recalculate conversion when input changes
+//     dollarController.addListener(() {
+//       convertCurrency();
+//     });
   }
 
   @override
